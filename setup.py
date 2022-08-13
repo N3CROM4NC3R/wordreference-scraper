@@ -1,11 +1,11 @@
 from setuptools import setup
 
 VERSION = '0.0.1'
-DESCRIPTION = "Scrapping words from wordreference"
-LONG_DESCRIPTION = "Module for scrapping words and its meanings in wordreference.com"
+DESCRIPTION = "Scraping words from wordreference"
+LONG_DESCRIPTION = "Module for scraping words and its meanings in wordreference.com"
 
 setup(
-    name="wordreference_scrapper",
+    name="wordreference-scraper",
     version = VERSION,
     description = DESCRIPTION,
     long_description = LONG_DESCRIPTION,
@@ -15,5 +15,4 @@ setup(
         "beautifulsoup4==4.11.1"
     ],
     package_dir = {'':'src'},
-   
 )

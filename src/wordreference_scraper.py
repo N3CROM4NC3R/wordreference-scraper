@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-class WordreferenceScrapper ():
+class WordreferenceScraper ():
     
     # Defining the wordreference url to scrap words, this for spanish translation
     wordreference_url = "https://www.wordreference.com/es/translation.asp?tranword="
@@ -23,7 +23,7 @@ class WordreferenceScrapper ():
         for key, value in conditionals.items():
             self.conditionals[key]["search"] = value
 
-    # Start the scrapping and returning the words
+    # Start the scraping and returning the words
     def start(self):
         
         word_meanings_final = {}
