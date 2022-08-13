@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: wordreference-scrapper
+Version: 0.0.1
+Summary: Scrapping words from wordreference
+Home-page: UNKNOWN
+Author: Santiago Padron
+License: UNKNOWN
+Platform: UNKNOWN
+
+Module for scrapping words and its meanings in wordreference.com
+

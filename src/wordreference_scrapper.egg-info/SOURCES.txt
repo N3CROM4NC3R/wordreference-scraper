@@ -1,0 +1,8 @@
+README.md
+setup.py
+src/wordreference_scrapper.egg-info/PKG-INFO
+src/wordreference_scrapper.egg-info/SOURCES.txt
+src/wordreference_scrapper.egg-info/dependency_links.txt
+src/wordreference_scrapper.egg-info/requires.txt
+src/wordreference_scrapper.egg-info/top_level.txt
+test/test_wordreference_scrapper.py
