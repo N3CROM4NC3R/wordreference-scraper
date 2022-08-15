@@ -3,6 +3,47 @@ from bs4 import BeautifulSoup
 
 class WordreferenceScraper ():
     
+    """
+    Class that contains all process to scrape any word and its meanings
+    from english to spanish in the Wordreference's dictonary 
+    (wordreference.com)
+    
+    Attributes
+    ----------
+
+    wordreference_url : str
+        The url of wordreference that leads to english to spanish translations.
+    
+    conditionals : dict
+        Conditionals that defines what sections to scrape.
+        ``"PT"``    
+        Contains all information whether this sections('Principal translations') 
+        is searchable or not and the title of the html tag that contains all the 
+        html tags of the meaning of the word
+        (dict)
+
+        ``"AT"``
+        Contains all information whether this sections('Additional translations') 
+        is searchable or not and the title of the html tag that contains all the 
+        html tags of the meaning of the word
+        (dict)
+
+        ``"CF"``
+        Contains all information whether this sections('Compound forms') 
+        is searchable or not and the title of the html tag that contains all the 
+        html tags of the meaning of the word
+        (dict)
+
+        ``"LV"``
+        Contains all information whether this sections('Locuciones verbales') 
+        is searchable or not and the title of the html tag that contains all the 
+        html tags of the meaning of the word
+        (dict)
+    """
+
+
+
+
     # Defining the wordreference url to scrap words, this for spanish translation
     wordreference_url = "https://www.wordreference.com/es/translation.asp?tranword="
 
@@ -14,21 +55,52 @@ class WordreferenceScraper ():
         "LV":{"search":True,"section_title":"Compound Forms"},
         }
 
-    # Constructor take the arguments List of words, conditionals(Sections to translate)
-    # and the deck name
-    def __init__(self, list_words, conditionals = dict()):
+
+    def __init__(self, word_list, conditionals = dict()):
+        """
+        Constructor takes a list of words and conditional, this last one
+        is a dictionary that defines what are the sections of wordreference
+        to scrape.
+
+        Parameters
+        ----------  
+        word_list : list of str
+            List of words to scrape
+
+        conditionals : dict, optional
+            Conditionals that defines what sections to scrape.
+
+            ``"PT"``    
+            boolean to allow scraping the section "Principal translations"
+            (bool)
+
+            ``"AT"``
+            boolean to allow scraping the section "Additional translations"
+            (bool)
+
+            ``"CF"``
+            boolean to allow scraping the section "Compound forms"
+            (bool)
+
+            ``"LV"``
+            Boolean to allow scraping the section "Locuciones verbales"
+            (bool)
+        """
         
-        self.list_words = list_words
+        self.word_list = word_list
 
         for key, value in conditionals.items():
             self.conditionals[key]["search"] = value
 
-    # Start the scraping and returning the words
+    
     def start(self):
-        
+        """
+        To start scraping the words
+        """
+
         word_meanings_final = {}
 
-        for word in self.list_words:
+        for word in self.word_list:
             html_text = self.request(word)
 
             soup = self.create_soup(html_text)
@@ -39,26 +111,69 @@ class WordreferenceScraper ():
     
         return word_meanings_final
 
-    # Making the request
-    # Building the complete url and returning the html of word
+    
     def request(self, word):    
+        """
+        To make the request to scrape the html of the word
         
+        Parameters
+        ----------
+        word: str
+            Word to make the request to scrape the html
+
+        Returns
+        -------
+        str
+            the html of the page of the word
+        """
+
         url = self.wordreference_url + word
 
         response = requests.get(url)
 
         return response.text
 
-    # Returning a BeautifulSoup object through the html text of the word
+    
     def create_soup(self, html_text):
+        """
+        Create a BeautifulSoup object parsing the html.
         
+        Parameters
+        ----------
+        html_text: str
+            HTML to parse to a BeautifulSoup object
+
+        Returns
+        -------
+        BeautifulSoup Object
+            The beautiful soup object that contains the html
+        """
+
+
         soup = BeautifulSoup(html_text, 'html.parser')
 
         return soup
 
-    # Extracting the html of each meaning of the word that are into the
-    # sections allowed
+
     def scan_words(self, soup_object):
+        """
+        Scrape each meaning of the html of the word
+        
+        Parameters
+        ----------
+        soup_object: BeautifulSoup object
+            THe BeautifulSoup object that contains the html of the word
+        
+        Returns
+        -------
+        Dict ['str', 'str']
+            The keys are the forms of the word, such as nouns, verbs,
+            adjectives, etc, and the values are all html about those
+            forms of the word.
+        """
+        
+
+
         # The tag that has all words, its forms and its meanings
         wrd_tags = soup_object.select('.WRD')
 
@@ -113,9 +228,28 @@ class WordreferenceScraper ():
             
         return words_and_meanings
         
-    # Method to make sure that a tag of the meaning is the last one
-    # of the group of tags that the meaning has
+
     def is_end_question(self,html_tags, html_tag):
+        """
+        Verifying that the html tag is the last one of the meaning 
+        of the form of a word.
+        
+        Parameters
+        ----------
+        html_tags: list of str
+            Every html tag of the meaning of a form of the word.
+
+        html_tag: str
+            Html tag to compare it with the entire list of html tags
+            to check whether this is the last one of the meaning 
+            of the form of the word
+        
+        Returns
+        -------
+        Bool
+            Boolean value whether the html tag is the last one or not.
+        """
+
         next_index = html_tags.index(html_tag) + 1
         
         if next_index < len(html_tags):
@@ -127,8 +261,23 @@ class WordreferenceScraper ():
         else:
             return True
 
-    # Creating a new word
     def fill_new_word(self,wrd_tag):
+        """
+        To make a new meaning of the form of the word
+
+        Parameters
+        ----------
+        wrd_tag: str of html
+            This is the html tag of the form of the word.
+
+        Returns
+        -------
+        str
+            This is the word of a new meaning.
+        """
+
+
+
         # Variable for the title of the question
         word_title = ""
         
