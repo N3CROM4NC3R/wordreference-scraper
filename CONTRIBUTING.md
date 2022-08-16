@@ -1,5 +1,8 @@
 # Contributing to Wordreference Scrapper
 
+First of all, thank you for contributing to this code, any help is helpful.
+
+
 ## Reporting issues
 
 including a brief, self-contained code example that demonstrates the problem is very useful for debugging.
