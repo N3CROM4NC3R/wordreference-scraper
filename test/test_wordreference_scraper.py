@@ -35,10 +35,10 @@ def test_getting_sections():
     words = ['Desktop', "Source"]
 
     sections = {
-        'PT':True,
-        'AT':True,
-        'CF':False,
-        'LV':False
+        'principal_translations':True,
+        'additional_translations':True,
+        'compound_forms':False,
+        'locuciones_verbales':False
     }
 
     wordreference_scrapper_obj = WordreferenceScraper(words, sections)

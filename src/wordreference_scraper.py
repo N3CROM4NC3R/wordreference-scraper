@@ -49,10 +49,10 @@ class WordreferenceScraper ():
 
     # Defining the sections to translate from the wordreference page
     conditionals = {
-        "PT":{"search":True,"section_title":"Principal Translations"},
-        "AT":{"search":True,"section_title":"Additional Translations"},
-        "CF":{"search":True,"section_title":"Phrasal verbs"},
-        "LV":{"search":True,"section_title":"Compound Forms"},
+        "principal_translations":{"search":True,"section_title":"Principal Translations"},
+        "additional_translations":{"search":True,"section_title":"Additional Translations"},
+        "compound_forms":{"search":True,"section_title":"Phrasal verbs"},
+        "locuciones_verbales":{"search":True,"section_title":"Compound Forms"},
         }
 
 
@@ -70,19 +70,19 @@ class WordreferenceScraper ():
         conditionals : dict, optional
             Conditionals that defines what sections to scrape.
 
-            ``"PT"``    
+            ``"principal_translations"``    
             boolean to allow scraping the section "Principal translations"
             (bool)
 
-            ``"AT"``
+            ``"additional_translations"``
             boolean to allow scraping the section "Additional translations"
             (bool)
 
-            ``"CF"``
+            ``"compound_forms"``
             boolean to allow scraping the section "Compound forms"
             (bool)
 
-            ``"LV"``
+            ``"locuciones_verbales"``
             Boolean to allow scraping the section "Locuciones verbales"
             (bool)
         """
@@ -90,7 +90,10 @@ class WordreferenceScraper ():
         self.word_list = word_list
 
         for key, value in conditionals.items():
-            self.conditionals[key]["search"] = value
+
+            if key in self.conditionals.keys():
+
+                self.conditionals[key]["search"] = value
 
     
     def start(self):
