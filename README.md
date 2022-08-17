@@ -40,10 +40,10 @@ print(scraped_words)
 ### Selecting sections
 Wordreference has multiple sections where shows the multiple meanings of word, such as 'Principal translations', 'Additional translations', 'Verbal Locutions', and 'Compound Forms'. These are the keys and values for the dictionary of sections to scrape
 
-- PT - Boolean: Section for Principal Translations
-- AT - Boolean: Section for Additional Translations
-- CF - Boolean: Section for Compound Forms
-- LV - Boolean: Section for "Locuciones Verbales"
+- principal_translations - Boolean: Section for Principal Translations
+- additional_translations - Boolean: Section for Additional Translations
+- compound_forms - Boolean: Section for Compound Forms
+- locuciones_verbales - Boolean: Section for "Locuciones Verbales"
 
 ```python
 from wordreference_scraper import WordreferenceScraper
@@ -51,10 +51,10 @@ from wordreference_scraper import WordreferenceScraper
 words = ['Absolute', 'Note', 'Self']
 
 sections = {
-    'PT':True,
-    'AT':True,
-    'CF':False,
-    'LV':False
+    'principal_translations':True,
+    'additional_translations':True,
+    'compound_forms':False,
+    'locuciones_verbales':False
 }
 
 wordreference_scraper_instance = WordreferenceScraper(words,sections)
