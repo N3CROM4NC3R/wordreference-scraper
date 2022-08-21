@@ -1,4 +1,4 @@
-from wordreference_scraper import WordreferenceScraper
+from wordreference_scraper.wordreference_scraper import WordreferenceScraper
 
 def test_getting_one_word():
     words = ["get"]

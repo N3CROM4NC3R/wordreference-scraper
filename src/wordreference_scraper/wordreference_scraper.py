@@ -16,25 +16,25 @@ class WordreferenceScraper ():
     
     conditionals : dict
         Conditionals that defines what sections to scrape.
-        ``"PT"``    
+        ``"principal_translations"``    
         Contains all information whether this sections('Principal translations') 
         is searchable or not and the title of the html tag that contains all the 
         html tags of the meaning of the word
         (dict)
 
-        ``"AT"``
+        ``"additional_translations"``
         Contains all information whether this sections('Additional translations') 
         is searchable or not and the title of the html tag that contains all the 
         html tags of the meaning of the word
         (dict)
 
-        ``"CF"``
+        ``"compound_forms"``
         Contains all information whether this sections('Compound forms') 
         is searchable or not and the title of the html tag that contains all the 
         html tags of the meaning of the word
         (dict)
 
-        ``"LV"``
+        ``"locuciones_verbales"``
         Contains all information whether this sections('Locuciones verbales') 
         is searchable or not and the title of the html tag that contains all the 
         html tags of the meaning of the word
