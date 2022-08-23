@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.0.1 (17/08/2022)
+## v0.1.0 (17/08/2022)
 
 - First release of `wordreference_scraper`!
 
