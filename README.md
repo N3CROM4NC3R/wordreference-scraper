@@ -10,15 +10,15 @@ Multiple languages soon.
 ### One word
 
 ```python
-from wordreference_scraper import WordreferenceScraper
+from wordreference_scraper.wordreference_scraper import WordreferenceScraper
 
 words = ['get']
 
 wordreference_scraper_instance = WordreferenceScraper(words)
 
-scraped_words = wordreference_scraper.start()
+scraped_words = wordreference_scraper_instance.start()
 
-print(scraped_words) 
+print(scraped_words)
 # Dictionary where the keys are the forms of the word
 # and the value is the html of all meanings of that word
 ```
@@ -26,13 +26,13 @@ print(scraped_words)
 ### Multiple words
 
 ```python
-from wordreference_scraper import WordreferenceScraper
+from wordreference_scraper.wordreference_scraper import WordreferenceScraper
 
 words = ['puzzle', 'noise', 'pencil']
 
 wordreference_scraper_instance = WordreferenceScraper(words)
 
-scraped_words = wordreference_scraper.start()
+scraped_words = wordreference_scraper_instance.start()
 
 print(scraped_words)
 
@@ -46,7 +46,7 @@ Wordreference has multiple sections where shows the multiple meanings of word, s
 - locuciones_verbales - Boolean: Section for "Locuciones Verbales"
 
 ```python
-from wordreference_scraper import WordreferenceScraper
+from wordreference_scraper.wordreference_scraper import WordreferenceScraper
 
 words = ['Absolute', 'Note', 'Self']
 
@@ -59,7 +59,7 @@ sections = {
 
 wordreference_scraper_instance = WordreferenceScraper(words,sections)
 
-scraped_words = wordreference_scraper.start()
+scraped_words = wordreference_scraper_instance.start()
 
 print(scraped_words)
 ```
