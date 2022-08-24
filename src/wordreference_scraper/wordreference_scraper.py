@@ -99,6 +99,11 @@ class WordreferenceScraper ():
     def start(self):
         """
         To start scraping the words
+
+        Returns
+        -------
+        dict
+            A dictionary that its keys is the words and its values are the meanings and examples
         """
 
         word_meanings_final = {}
@@ -278,8 +283,6 @@ class WordreferenceScraper ():
         str
             This is the word of a new meaning.
         """
-
-
 
         # Variable for the title of the question
         word_title = ""
